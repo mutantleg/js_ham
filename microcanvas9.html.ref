@@ -1,0 +1,529 @@
+
+<html>
+
+<head>
+<style>
+canvas {
+  image-rendering: optimizeSpeed;             
+  image-rendering: -moz-crisp-edges;          
+  image-rendering: -webkit-optimize-contrast; 
+  image-rendering: -o-crisp-edges;            
+  image-rendering: pixelated;                 
+  -ms-interpolation-mode: nearest-neighbor;   
+}
+</style>
+</head>
+
+<body>
+
+<canvas id="myCanvas" width="256" height="192"  style="border:1px solid #000000;" />
+
+ <script>
+  var canvas=document.getElementById("myCanvas");
+      canvas.style.width = '512px'; canvas.style.height = '384px';
+  var ctx = canvas.getContext("2d"); ctx.imageSmoothingEnabled = false;
+  var load = 1; var firstRun = 1; var vecKey = []; var vecSpr = [];
+  var key_left = 37;    var key_up = 38;    var key_right = 39;    var key_down = 40;
+  var key_w = 87; var key_a = 65;var key_s = 83;var key_d = 68;var key_m = 77;
+  var key_n = 78;var key_x = 88; var key_y = 89;var key_z = 90;
+  var keyUp = false;  var keyDown = false;  var keyLeft = false;  var keyRight = false;
+  var keyFire = false;  var keyFire2 = false;
+  function isKdown(k) { return vecKey[k] == 1; }
+  var gt = 0;  
+  
+  var tmap = document.createElement('canvas');
+  var ctt = tmap.getContext("2d");
+   
+ load=0;
+  var img = new Image();
+    img.src = "spr.png"; 
+    img.onload = function()  { initSpr(); load+=1; }
+ 
+  //todo -- export lookup by xglue  
+  //var spr = { x:1, y:1, width:24, height:16, name:"wclimb0" };
+  //vecSpr["wclimb0"] = spr;
+  
+  function initSpr()
+  {
+    ////var vecSpr = [];
+     vecSpr["!"] = { x:1, y:1, width:8, height:8 }; 
+     vecSpr["#"] = { x:11, y:1, width:8, height:8 }; 
+     vecSpr["$"] = { x:21, y:1, width:8, height:8 }; 
+     vecSpr["%"] = { x:31, y:1, width:8, height:8 }; 
+     vecSpr["&"] = { x:41, y:1, width:8, height:8 }; 
+     vecSpr["&#34;"] = { x:51, y:1, width:8, height:8 }; 
+     vecSpr["'"] = { x:61, y:1, width:8, height:8 }; 
+     vecSpr["'"] = { x:71, y:1, width:8, height:8 }; 
+     vecSpr["("] = { x:81, y:1, width:8, height:8 }; 
+     vecSpr[")"] = { x:91, y:1, width:8, height:8 }; 
+     vecSpr["*"] = { x:101, y:1, width:8, height:8 }; 
+     vecSpr["+"] = { x:111, y:1, width:8, height:8 }; 
+     vecSpr[","] = { x:121, y:1, width:8, height:8 }; 
+     vecSpr["-"] = { x:131, y:1, width:8, height:8 }; 
+     vecSpr["."] = { x:141, y:1, width:8, height:8 }; 
+     vecSpr["/"] = { x:151, y:1, width:8, height:8 }; 
+     vecSpr["0"] = { x:161, y:1, width:8, height:8 }; 
+     vecSpr["1"] = { x:171, y:1, width:8, height:8 }; 
+     vecSpr["2"] = { x:181, y:1, width:8, height:8 }; 
+     vecSpr["3"] = { x:1, y:11, width:8, height:8 }; 
+     vecSpr["4"] = { x:1, y:21, width:8, height:8 }; 
+     vecSpr["5"] = { x:1, y:31, width:8, height:8 }; 
+     vecSpr["6"] = { x:1, y:41, width:8, height:8 }; 
+     vecSpr["7"] = { x:1, y:51, width:8, height:8 }; 
+     vecSpr["8"] = { x:1, y:61, width:8, height:8 }; 
+     vecSpr["9"] = { x:1, y:71, width:8, height:8 }; 
+     vecSpr[":"] = { x:1, y:81, width:8, height:8 }; 
+     vecSpr[";"] = { x:1, y:91, width:8, height:8 }; 
+     vecSpr["<"] = { x:1, y:101, width:8, height:8 }; 
+     vecSpr["="] = { x:1, y:111, width:8, height:8 }; 
+     vecSpr[">"] = { x:1, y:121, width:8, height:8 }; 
+     vecSpr["?"] = { x:1, y:131, width:8, height:8 }; 
+     vecSpr["@"] = { x:1, y:141, width:8, height:8 }; 
+     vecSpr["A"] = { x:1, y:151, width:8, height:8 }; 
+     vecSpr["B"] = { x:1, y:161, width:8, height:8 }; 
+     vecSpr["C"] = { x:1, y:171, width:8, height:8 }; 
+     vecSpr["D"] = { x:1, y:181, width:8, height:8 }; 
+     vecSpr["E"] = { x:11, y:11, width:8, height:8 }; 
+     vecSpr["F"] = { x:21, y:11, width:8, height:8 }; 
+     vecSpr["G"] = { x:31, y:11, width:8, height:8 }; 
+     vecSpr["H"] = { x:41, y:11, width:8, height:8 }; 
+     vecSpr["I"] = { x:51, y:11, width:8, height:8 }; 
+     vecSpr["J"] = { x:61, y:11, width:8, height:8 }; 
+     vecSpr["K"] = { x:71, y:11, width:8, height:8 }; 
+     vecSpr["L"] = { x:81, y:11, width:8, height:8 }; 
+     vecSpr["M"] = { x:91, y:11, width:8, height:8 }; 
+     vecSpr["N"] = { x:101, y:11, width:8, height:8 }; 
+     vecSpr["O"] = { x:111, y:11, width:8, height:8 }; 
+     vecSpr["P"] = { x:121, y:11, width:8, height:8 }; 
+     vecSpr["Q"] = { x:131, y:11, width:8, height:8 }; 
+     vecSpr["R"] = { x:141, y:11, width:8, height:8 }; 
+     vecSpr["S"] = { x:151, y:11, width:8, height:8 }; 
+     vecSpr["T"] = { x:161, y:11, width:8, height:8 }; 
+     vecSpr["U"] = { x:171, y:11, width:8, height:8 }; 
+     vecSpr["V"] = { x:181, y:11, width:8, height:8 }; 
+     vecSpr["W"] = { x:11, y:21, width:8, height:8 }; 
+     vecSpr["X"] = { x:11, y:31, width:8, height:8 }; 
+     vecSpr["Y"] = { x:11, y:41, width:8, height:8 }; 
+     vecSpr["Z"] = { x:11, y:51, width:8, height:8 }; 
+     vecSpr["["] = { x:11, y:61, width:8, height:8 }; 
+     vecSpr["\\"] = { x:11, y:71, width:8, height:8 }; 
+     vecSpr["]"] = { x:11, y:81, width:8, height:8 }; 
+     vecSpr["_"] = { x:11, y:91, width:8, height:8 }; 
+     vecSpr["a"] = { x:11, y:101, width:8, height:8 }; 
+     vecSpr["b"] = { x:11, y:111, width:8, height:8 }; 
+     vecSpr["c"] = { x:11, y:121, width:8, height:8 }; 
+     vecSpr["d"] = { x:11, y:131, width:8, height:8 }; 
+     vecSpr["e"] = { x:11, y:141, width:8, height:8 }; 
+     vecSpr["f"] = { x:11, y:151, width:8, height:8 }; 
+     vecSpr["g"] = { x:11, y:161, width:8, height:8 }; 
+     vecSpr["h"] = { x:11, y:171, width:8, height:8 }; 
+     vecSpr["i"] = { x:11, y:181, width:8, height:8 }; 
+     vecSpr["j"] = { x:21, y:21, width:8, height:8 }; 
+     vecSpr["k"] = { x:31, y:21, width:8, height:8 }; 
+     vecSpr["l"] = { x:41, y:21, width:8, height:8 }; 
+     vecSpr["m"] = { x:51, y:21, width:8, height:8 }; 
+     vecSpr["n"] = { x:61, y:21, width:8, height:8 }; 
+     vecSpr["o"] = { x:71, y:21, width:8, height:8 }; 
+     vecSpr["p"] = { x:81, y:21, width:8, height:8 }; 
+     vecSpr["q"] = { x:91, y:21, width:8, height:8 }; 
+     vecSpr["r"] = { x:101, y:21, width:8, height:8 }; 
+     vecSpr["s"] = { x:111, y:21, width:8, height:8 }; 
+     vecSpr["t"] = { x:121, y:21, width:8, height:8 }; 
+     vecSpr["tile1"] = { x:21, y:31, width:16, height:16 }; 
+     vecSpr["tile2"] = { x:21, y:49, width:16, height:16 }; 
+     vecSpr["u"] = { x:131, y:21, width:8, height:8 }; 
+     vecSpr["v"] = { x:141, y:21, width:8, height:8 }; 
+     vecSpr["w"] = { x:151, y:21, width:8, height:8 }; 
+     vecSpr["wclimb0"] = { x:39, y:31, width:24, height:16 }; 
+     vecSpr["wclimb1"] = { x:65, y:31, width:24, height:16 }; 
+     vecSpr["wclimb2"] = { x:91, y:31, width:24, height:16 }; 
+     vecSpr["wclimb3"] = { x:117, y:31, width:24, height:16 }; 
+     vecSpr["wdoub0"] = { x:21, y:67, width:16, height:16 }; 
+     vecSpr["wdoub1"] = { x:21, y:85, width:16, height:16 }; 
+     vecSpr["wdoub2"] = { x:21, y:103, width:16, height:16 }; 
+     vecSpr["wdoub3"] = { x:21, y:121, width:16, height:16 }; 
+     vecSpr["wman0"] = { x:143, y:31, width:24, height:16 }; 
+     vecSpr["wman1"] = { x:39, y:49, width:24, height:16 }; 
+     vecSpr["wman2"] = { x:39, y:67, width:24, height:16 }; 
+     vecSpr["wman3"] = { x:39, y:85, width:24, height:16 }; 
+     vecSpr["wman4"] = { x:39, y:103, width:24, height:16 }; 
+     vecSpr["wman5"] = { x:39, y:121, width:24, height:16 }; 
+     vecSpr["wman6"] = { x:39, y:139, width:24, height:16 }; 
+     vecSpr["wman7"] = { x:39, y:157, width:24, height:16 }; 
+     vecSpr["wmanx"] = { x:39, y:175, width:24, height:16 }; 
+     vecSpr["x"] = { x:161, y:21, width:8, height:8 }; 
+     vecSpr["y"] = { x:171, y:21, width:8, height:8 }; 
+     vecSpr["z"] = { x:181, y:21, width:8, height:8 }; 
+     vecSpr["{"] = { x:21, y:139, width:8, height:8 }; 
+     vecSpr["|"] = { x:21, y:149, width:8, height:8 }; 
+     vecSpr["}"] = { x:21, y:159, width:8, height:8 }; 
+
+
+  }//initspr
+  
+  function drawSpr(spname, ax, ay)
+  {
+    a = vecSpr[spname];
+    if ( a == undefined) { return; }
+    ctx.drawImage(img,  a.x,a.y,a.width,a.height, 
+    ax-a.width*0.5, ay-a.height*0.5,  a.width, a.height);
+  }//drawspr 
+  
+  // scx scy -- scale  e.g. scx -1 for mirror horizontally
+  // ang     -- angle in radians  (to deg: 45*(3.1415/180.0) )
+  function drawSprAdv(spname, ax, ay,  scx, scy, ang)
+  {
+    a = vecSpr[spname];
+    if ( a == undefined) { return; }
+    ctx.save();
+    ctx.translate(Math.floor(ax), Math.floor(ay));
+    ctx.rotate(ang);
+    ctx.scale(scx, scy);
+    ctx.drawImage(img,  a.x, a.y,a.width,a.height, 
+    -a.width*0.5, -a.height*0.5,  a.width, a.height);
+    ctx.restore();
+  }//drawspradv
+  
+  function writeStr(str, ax, ay)
+  {
+    var i; var num; var dx; var dy;
+    var ch;
+    num = str.length;
+    dx = ax; dy = ay;
+    for (i=0;i<num;i+=1)
+    {
+      ch = str.charAt(i);
+      if (ch == "\n") { dy += 8; dx= ax; }
+      else { drawSpr(ch, dx, dy); dx+=8; }
+    }//nexti
+  }//writestr
+  
+  function init()
+  {   
+    document.addEventListener('keydown', function(event) { event.preventDefault(); vecKey[event.keyCode] = 1; }, true);
+    document.addEventListener('keyup', function(event) { event.preventDefault();  vecKey[event.keyCode] =  0; }, true);
+  }//init
+ 
+  function makeObj()
+  { var obj;
+      obj = { cx:0, cy:0, vx:0, vy:0, canJump:1, djump:0, jumpy:0, dir:1, curFrame:0, img:"wman0" };
+    return obj;
+  }//makeobj
+ 
+  //player values 
+   var playerObj = makeObj();
+     playerObj.cx = 160;
+     playerObj.cy = 120;
+     
+  
+  //map values 
+   var mw = 16; var mh = 12;
+   var vecMap = [];
+   
+   function clearMap()
+   { vecMap = []; }
+   
+   function getTile(ax, ay)
+   { if (ax<0||ax>=mw||ay<0||ay>=mh) { return -1; } return vecMap[Math.floor(ax+(ay*mw))];  }
+  
+   function setTile(ax, ay, t)
+   { if (ax<0||ax>=mw||ay<0||ay>=mh) { } else { vecMap[Math.floor(ax+(ay*mw))] = t; }  }
+  
+   function setTileHoriz(ax, ay, aw, t)
+   { var i; for (i=0;i<aw;i+=1) { setTile(ax+i,ay, t); } }
+
+   function setTileVert(ax, ay, ah, t)
+   { var i; for (i=0;i<ah;i+=1) { setTile(ax,ay+i, t); } }
+
+   function setTileRect(ax, ay, aw, ah, t)
+   { 
+    setTileHoriz(ax,ay,aw, t);
+    setTileHoriz(ax,ay+ah-1,aw, t);
+    setTileVert(ax,ay, ah, t);
+    setTileVert(ax+aw-1,ay, ah, t);
+   }//tilevert
+   
+   function isWall(ax,ay)
+   { var t; t = getTile(Math.floor(ax/16), Math.floor(ay/16)); return t == 1; }
+
+   function getWall(ax,ay)
+   { return  getTile(Math.floor(ax/16), Math.floor(ay/16)); }
+   
+   //TEST MAP
+      // setTile(0,0, 1);
+      // setTile(1,1, 1);
+       //setTileHoriz(0, 0, 16, 1);
+       //setTileHoriz(0, 11, 16, 1);
+       
+       //setTileVert(0,0, 12, 1);
+       //setTileVert(15,0, 12, 1);
+       
+       
+    var curMap;    curMap = 0;
+    var gameState; gameState = 0;
+    var cmx = 0;
+    var cmy = 0;
+    
+    
+    function loadMapEmpty()
+    {
+      setTileRect(0,0, 16,12, 1);
+       if (cmx > -2)  { setTile(0,10, 0); }        
+       if (cmx < 2)   { setTile(15,10, 0); }
+    
+        setTile(6,11, 2);      
+        setTile(6,10, 2);        
+         //setTile(6,0,  2);
+        // setTile(6,1,  2);
+        setTileVert(6,0, 12, 2);
+
+        if (cmy < -2 ) { setTile(6,0,  1); }
+        if (cmy >  2 ) { setTile(6,11,  1); }
+       
+    }//loadMapEmpty
+       
+    function loadMapTest()
+    {
+         setTileRect(0,0, 16,12, 1);
+         
+         setTileHoriz(4,4, 8, 1);
+         setTileHoriz(4,8, 8, 1);
+         
+         setTile(1,3,  1);
+         setTile(14,3, 1);
+         setTile(1,7,  1);
+         setTile(14,7, 1);
+         
+         setTileVert(3,3, 8, 2);
+         
+         setTile(0,10, 0);
+         setTile(15,10, 0);
+
+         setTile(6,11, 2);
+         setTile(6,10, 2);
+         setTile(6,0,  2);
+         setTile(6,1,  2);
+         
+   }//loadMapTest
+   
+    
+
+    
+    var rseed = 1;
+    function getRand() {
+      var ret = Math.cos(rseed) * 615;
+      rseed += 1;
+      return ret - Math.floor(ret);
+    }//getrand
+    
+    function changeMap()
+    {
+      //console.log("changemap ");
+      clearMap();
+      curMap = cmx + (cmy*256);
+      if (curMap == 0) {  loadMapTest(); return; }
+      rseed = curMap * 33;
+      //rseed = 1;
+      var i;
+      for (i=0;i<32;i+=1)
+      {
+        setTile(getRand()*16, getRand()*12, 1);
+      }
+      loadMapEmpty();
+    }//changemap
+     
+  //first map load 
+    loadMapTest();
+   
+   var keyHold = 0; 
+   function updatePlayer(obj)
+   {
+      var ms; ms = 0.1;
+      var gy; gy = 0.2;
+      var onLadder; onLadder = 0;
+      var keyJump; keyJump = keyUp || keyFire;
+      
+      if (getWall(obj.cx, obj.cy)==2) 
+      { 
+        onLadder = 1;
+        gy = 0;
+        obj.vy=0;
+        obj.vx=0;
+        obj.canJump=0;
+         if (keyUp && (getWall(obj.cx, obj.cy-8)==2 || obj.cy<16)  )    { obj.vy = -1.5; obj.curFrame+=0.25; }
+         if (keyDown)  { obj.vy = 1.5;  obj.curFrame+=0.25;}
+         if (keyLeft)    { obj.vx = -1;  }
+         if (keyRight)  { obj.vx = 1;  }
+         var kx;
+         kx = Math.floor(obj.cx/16)*16 + 8;
+         if (keyUp||keyDown) { obj.cx+=(kx-obj.cx)*0.25; }
+      }//endif
+      
+       obj.vx *= 0.97; obj.vy*=0.99;
+       obj.vy += gy; if (obj.vy>=2) {obj.vy=2;}
+       
+       ms=1.5;obj.vx=0;
+       if (obj.vy>=0 && (isWall(obj.cx, obj.cy+8)||isWall(obj.cx-4, obj.cy+8)||isWall(obj.cx+4, obj.cy+8))) 
+       { obj.vy=0; obj.canJump=1; obj.djump=0; if ((keyLeft||keyRight)==false) { obj.vx*=0.55; } }
+       else { if ((keyLeft||keyRight)==false) { obj.vx*=0.95; } /*ms = 0.2;*/ }
+       
+       if (keyJump && obj.canJump==1 && (isWall(obj.cx, obj.cy-12)==false) ) {obj.vy=-3; obj.jumpy=28; obj.canJump = 0; keyHold = 2; }
+       if (obj.vy<-1 || obj.vy>1){ obj.canJump=0;}
+       if (keyJump==false && obj.jumpy > 0) { obj.jumpy = 0; /*obj.vy=-1;*/  }
+       else if ( obj.jumpy>0) { obj.jumpy-=1;  if(obj.vy >-2) { obj.vy=-2; } }
+       
+       if (keyJump) { keyHold += 1; }
+       else { keyHold = 0; }
+       //if (keyHold == 1) {   console.log("keyhold1 ", gt);  }
+       if (keyHold == 1 && obj.canJump == 0 && obj.djump < 1)
+       { obj.djump += 1; keyHold = 2; obj.vy=-5;  }
+       
+       //if (keyUp)    { vy -= ms; }
+       //if (keyDown)  { vy += ms; }
+       if (keyLeft)  { obj.vx -= ms; obj.dir = -1;  obj.curFrame+=0.2; }
+       if (keyRight) { obj.vx += ms; obj.dir = 1;   obj.curFrame+=0.2; }
+       
+       if (obj.vx>0&&isWall(obj.cx+8, obj.cy)) { obj.vx=0; }
+       if (obj.vx<0&&isWall(obj.cx-8, obj.cy)) { obj.vx=0; }
+       if (obj.vy>0&&isWall(obj.cx, obj.cy+8)) { obj.vy=0; }
+       if (obj.vy<0&&isWall(obj.cx, obj.cy-8)) { obj.vy=0; obj.jumpy=0; }
+
+       var ax; var ay;
+       ax=obj.vx; ay=obj.vy;
+       ms=2;
+       if (ax>ms){ax=ms;} if (ax<-ms){ax=-ms;}
+       ms=3;
+       if (ay>ms){ay=ms;} if (ay<-ms){ay=-ms;}
+       
+       obj.cx+=ax; obj.cy+=ay;
+       
+        //   if (isWall(obj.cx, obj.cy+8-1)&&isWall(obj.cx, obj.cy-8-1)==false){ obj.cy-=1;}
+        if (onLadder == 0)
+        {
+           if ((isWall(obj.cx, obj.cy+8-1)||isWall(obj.cx-4, obj.cy+8-1)||isWall(obj.cx+4, obj.cy+8-1))
+           &&
+           (isWall(obj.cx, obj.cy-8-1)||isWall(obj.cx-4, obj.cy-8-1)||isWall(obj.cx+4, obj.cy-8-1))==false){ obj.cy-=1;}
+        }//endif
+   
+       if (onLadder == 1 && isWall(obj.cx, obj.cy+10)==false)
+       {
+           if (obj.curFrame>=4){ obj.curFrame=0;}  
+           if (obj.curFrame<0){ obj.curFrame+=4;}  
+             obj.img = "wclimb"+(Math.floor(playerObj.curFrame));
+       }
+       else if ( (isWall(obj.cx, obj.cy+10)==false && obj.vy!=0) )
+       {
+       // if (obj.vy<0) { obj.img = "wman4"; } 
+       // else { obj.img = "wman0"; }
+          obj.curFrame+=0.1;
+          if (obj.curFrame>=4){ obj.curFrame=0;}  
+           if (obj.curFrame<0){ obj.curFrame+=4;}  
+             obj.img = "wdoub"+(Math.floor(playerObj.curFrame));
+       }
+       else
+       {
+        if (obj.curFrame>=8){ obj.curFrame=0;}  
+        if (obj.curFrame<0){ obj.curFrame+=8;}  
+       
+        obj.img = "wman"+(Math.floor(playerObj.curFrame));
+       }//endif
+       
+       
+       if (obj.cx > 256) { obj.cx -= 256; gameState = 1;  }
+       if (obj.cx < 0)   { obj.cx += 256; gameState = -1; }
+       
+       if (obj.cy > 192) { obj.cy -= 192; gameState = 2;  }
+       if (obj.cy < 0)   { obj.cy += 192;   gameState = -2; }
+       
+    //var kx; var ky;
+       // kx = (Math.floor(cx/8)*8);
+       // ky = (Math.floor(cy/8)*8);       
+       //if (vx==0) { cx += (kx-cx)*0.25; }
+       //if (vy==0) { cy += (ky-cy)*0.25; }
+   
+   }//updatePlayer
+   
+  function mainLoop()
+    {
+     if (load < 1) {  setTimeout(mainLoop, 100); return; }
+     if (firstRun==1){ firstRun = 0; init(); }
+       keyUp = (isKdown(key_w) || isKdown(key_up));
+       keyDown = (isKdown(key_s) || isKdown(key_down));
+       keyLeft = (isKdown(key_a) || isKdown(key_left));
+       keyRight = (isKdown(key_d) || isKdown(key_right));
+       keyFire = (isKdown(key_n) || isKdown(key_z)||isKdown(key_y) );
+       keyFire2 = (isKdown(key_m) || isKdown(key_x) );
+       
+       
+       if (gameState == 1) { gameState = 0; cmx += 1; changeMap(); }
+       if (gameState == -1) { gameState = 0; cmx -= 1; changeMap(); }
+       if (gameState == 2) { gameState = 0; cmy += 1; changeMap(); }
+       if (gameState == -2) { gameState = 0; cmy -= 1; changeMap(); }
+      
+       updatePlayer(playerObj);
+          
+       
+       ctx.save();
+         //ctx.fillStyle="#000000";
+         ctx.fillStyle="#3040aa";
+         ctx.fillRect(0,0, canvas.width, canvas.height);  
+ 
+          //var mw; var mh;
+          var k; var i; var t;
+          mw = 16; mh = 12;
+          for (i=0;i<mh;i+=1)
+          {
+            for (k=0;k<mw;k+=1)
+            {
+              t = vecMap[ Math.floor(k+(i*mw)) ];
+              if (t > 0)
+              { drawSpr("tile"+t, k*16+8, i*16+8); }
+            }//nextk         
+          }//nexti 
+        
+        /*
+         writeStr("Testing", 32,32);
+         writeStr("Testing\nhurrhurr", 32,64);
+         writeStr("It's tricky ",32,120);
+         writeStr("Special stuff []{}()+-*.!?:;",32,160);
+         // drawSpr("wclimb0", 32,32);
+         */
+       //   writeStr("Curmap " + curMap, 16, 16);
+       //   writeStr("cmx " + cmx, 16, 16+8);
+        //  writeStr("cmy " + cmy, 16, 16+8+8);
+          writeStr("["+cmx+":"+cmy+"]", 8,8);
+         
+         //drawSpr("wclimb0", cx, cy);
+         
+       //  drawSpr("wman"+(Math.floor((gt*0.25)%8)), cx, cy);
+     //    drawSprAdv("wman"+(Math.floor((gt*0.25)%8)), cx, cy, dir, 1);
+         //drawSprAdv("wman"+(Math.floor((gt*0.25)%8)), cx, cy, 1, -1);
+        // drawSprAdv("wman"+(Math.floor((gt*0.25)%8)), cx, cy, -1, -1);
+        //drawSprAdv("wman"+(Math.floor((gt*0.25)%8)), cx, cy, 2, 2, 0);
+      //  drawSprAdv("wman"+(Math.floor((gt*0.25)%8)), cx, cy, 2, 2, gt*0.05);
+          
+       // ctx.fillStyle="#1245fa";
+       // ctx.fillRect(Math.floor(playerObj.cx)-8,Math.floor(playerObj.cy)-8, 16,16);
+         
+        //curFrame += 0.25;
+        //curFrame += vx*0.125;
+        //drawSprAdv("wman"+(Math.floor(playerObj.curFrame)), playerObj.cx, playerObj.cy, playerObj.dir, 1);
+        drawSprAdv(playerObj.img, playerObj.cx, playerObj.cy, playerObj.dir, 1);
+        
+            
+       ctx.restore();
+      gt += 1;  
+     // setTimeout(mainLoop, 1000 / 60);
+    }//mainLoop
+
+   
+    mainLoop();
+    //seems to be faster than settimeout
+    setInterval(mainLoop, Math.floor(1000/60));
+</script>
+
+
+</body>
+
+
+</html>

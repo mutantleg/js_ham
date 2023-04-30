@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<texture width="128" height="128" name="spr8.png">
+  <image  x="1" y="1" width="16" height="16" name="beast" offx="0" offy="0" ow="16" oh="16" />
+  <image  x="19" y="1" width="16" height="16" name="brick" offx="0" offy="0" ow="16" oh="16" />
+  <image  x="37" y="1" width="16" height="16" name="cat" offx="0" offy="0" ow="16" oh="16" />
+  <image  x="55" y="1" width="16" height="16" name="chomp0" offx="0" offy="0" ow="16" oh="16" />
+  <image  x="73" y="1" width="16" height="16" name="chomp1" offx="0" offy="0" ow="16" oh="16" />
+  <image  x="91" y="1" width="16" height="16" name="chomp2" offx="0" offy="0" ow="16" oh="16" />
+  <image  x="109" y="1" width="16" height="16" name="chomp3" offx="0" offy="0" ow="16" oh="16" />
+  <image  x="1" y="19" width="16" height="16" name="devil" offx="0" offy="0" ow="16" oh="16" />
+  <image  x="1" y="37" width="16" height="16" name="devilfire" offx="0" offy="0" ow="16" oh="16" />
+  <image  x="1" y="55" width="16" height="16" name="fire" offx="0" offy="0" ow="16" oh="16" />
+  <image  x="1" y="73" width="16" height="16" name="magic" offx="0" offy="0" ow="16" oh="16" />
+  <image  x="1" y="91" width="16" height="16" name="magichit" offx="0" offy="0" ow="16" oh="16" />
+  <image  x="1" y="109" width="16" height="16" name="man" offx="0" offy="0" ow="16" oh="16" />
+  <image  x="19" y="19" width="16" height="16" name="nerd" offx="0" offy="0" ow="16" oh="16" />
+  <image  x="37" y="19" width="16" height="16" name="pause" offx="0" offy="0" ow="16" oh="16" />
+  <image  x="55" y="19" width="16" height="16" name="qmark0" offx="0" offy="0" ow="16" oh="16" />
+  <image  x="73" y="19" width="16" height="16" name="qmark1" offx="0" offy="0" ow="16" oh="16" />
+  <image  x="91" y="19" width="16" height="16" name="qmark2" offx="0" offy="0" ow="16" oh="16" />
+  <image  x="109" y="19" width="16" height="16" name="qmark3" offx="0" offy="0" ow="16" oh="16" />
+  <image  x="19" y="37" width="16" height="16" name="qmark4" offx="0" offy="0" ow="16" oh="16" />
+  <image  x="19" y="55" width="16" height="16" name="qmark5" offx="0" offy="0" ow="16" oh="16" />
+  <image  x="19" y="73" width="16" height="16" name="qmark6" offx="0" offy="0" ow="16" oh="16" />
+  <image  x="19" y="91" width="16" height="16" name="qmark7" offx="0" offy="0" ow="16" oh="16" />
+  <image  x="19" y="109" width="16" height="16" name="worm" offx="0" offy="0" ow="16" oh="16" />
+  <image  x="37" y="37" width="16" height="16" name="wormhead" offx="0" offy="0" ow="16" oh="16" />
+</texture>

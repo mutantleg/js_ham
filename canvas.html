@@ -1,0 +1,149 @@
+
+<html>
+
+<head>
+<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+<meta content="utf-8" http-equiv="encoding">
+<style>
+canvas {
+  image-rendering: optimizeSpeed;             
+  image-rendering: -moz-crisp-edges;          
+  image-rendering: -webkit-optimize-contrast; 
+  image-rendering: -o-crisp-edges;            
+  image-rendering: pixelated;                 
+  -ms-interpolation-mode: nearest-neighbor;   
+}
+</style>
+</head>
+
+<body bgcolor="#000000" onresize="resizeHandle()" >
+
+<div style="text-align:center;" >
+<canvas id="myCanvas" width="320" height="240"  style="border:1px solid #000000;" />
+</div>
+
+
+<script> 
+   function resizeHandle()
+   {/*
+    if (window.innerWidth > 1024 && window.innerHeight > 768)
+    {  canvas.style.width = '1024px'; canvas.style.height = '768px';  return; }
+    if (window.innerWidth > 512 && window.innerHeight > 384)
+    {  canvas.style.width = '512px'; canvas.style.height = '384px';  return; }
+    canvas.style.width = '256px'; canvas.style.height = '192px'; */
+   }
+
+</script>
+
+ <script>
+  var canvas=document.getElementById("myCanvas");
+//  canvas.style.width = '640px'; canvas.style.height = '480px';
+  canvas.style.width='99%';
+  canvas.style.height='99%';
+  
+  var ctx = canvas.getContext("2d"); 
+  ctx.imageSmoothingEnabled = false;
+  var firstRun = 1; 
+  //var debugMode = true;  //replaced with bDebug
+  var paused = false; 
+
+
+  var load = 1;   //are these still used   
+  var sprLoad = 0;  //are these still used   
+
+    
+  var vecSpr = [];
+  
+  var gt = 0;  
+  var camx = 0;
+  var camy = 0;
+  var camz = 0;
+  var camYaw = 0;
+  var camPitch = 0;
+  var wmx = 0;
+  var wmy = 0;
+  
+
+  //need to predefine for chrome
+  function init() { console.log("wronginit"); } 
+  function update() { console.log("wrongupdate"); }
+  
+  function mainLoop()
+    {
+     if (load < 1) { return; }
+     //if (firstRun==1){ firstRun = 0; init(); }
+       ctx.save();
+        update();
+       ctx.restore();
+      
+    }//mainLoop
+    //seems to be faster than settimeout
+    setInterval(mainLoop, Math.floor(1000/60));
+</script>
+
+
+<!-- assets -->
+<!-- load these before libs (menu needs fontspr -->
+<script src="fontspr.js" ></script> 
+<script src="i_fontspr.png.js" ></script> 
+<script src="spr8.js" ></script> 
+<script src="i_spr8.png.js" ></script> 
+<script src="i_title.png.js" ></script> 
+
+<script src="i_snd1.mp3.js" ></script> 
+<script src="i_snd2.mp3.js" ></script> 
+<script src="i_snd3.mp3.js" ></script> 
+<script src="i_snd4.mp3.js" ></script> 
+<script src="i_snd5.mp3.js" ></script> 
+<script src="i_snd6.mp3.js" ></script> 
+<script src="i_snd7.mp3.js" ></script> 
+<script src="i_snd8.mp3.js" ></script> 
+<script src="i_snd9.mp3.js" ></script> 
+<script src="i_snd10.mp3.js" ></script> 
+<script src="i_snd11.mp3.js" ></script> 
+<script src="i_snd12.mp3.js" ></script> 
+<script src="i_snd13.mp3.js" ></script> 
+<script src="i_snd14.mp3.js" ></script> 
+<script src="i_snd15.mp3.js" ></script> 
+<script src="i_snd16.mp3.js" ></script> 
+
+
+<script src="i_tileset3.png.js" ></script> 
+<script src="i_tileset3shad.png.js" ></script> 
+<script src="m_xmap_mid.js" ></script> 
+<script src="m_xmap_back.js" ></script> 
+<script src="m_xmap_rect.js" ></script> 
+<script src="m_xmap_act.js" ></script> 
+
+<!-- https://ezgif.com/image-to-datauri/ -->
+<!-- need to convert all images for datauri to work on chrome -->
+<!-- .. and firefox -->
+
+<!-- todo skip this on compile -->
+<script src="c_debug.js" ></script> 
+
+<script src="c_randlib.js" ></script> 
+<script src="c_fxrandlib.js" ></script> 
+<script src="c_keylib.js" ></script> 
+<script src="c_ratlib.js" ></script> 
+<script src="c_sprlib.js" ></script> 
+<script src="c_soundlib.js" ></script> 
+<script src="c_full.js" ></script> 
+<script src="c_config.js" ></script> 
+<script src="i_font8x8.png.js" ></script> 
+<script src="i_font10x12.png.js" ></script> 
+<script src="c_menu.js" ></script> 
+<script src="c_tilemap.js" ></script> 
+<script src="c_tilefog.js" ></script> 
+
+<script src="g_actlib.js" ></script> 
+<script src="g_upact.js" ></script> 
+<script src="g_drawact.js" ></script> 
+<script src="g_showmsg.js" ></script> 
+<script src="main.js" ></script> 
+
+
+</body>
+
+
+</html>

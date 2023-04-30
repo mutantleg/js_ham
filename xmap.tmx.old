@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="64" height="48" tilewidth="16" tileheight="16">
+ <tileset firstgid="1" name="tileset3" tilewidth="16" tileheight="16">
+  <image source="tileset3.png" width="256" height="256"/>
+  <terraintypes>
+   <terrain name="dark" tile="-1"/>
+   <terrain name="brick" tile="-1"/>
+  </terraintypes>
+  <tile id="1">
+   <properties>
+    <property name="spec" value="100"/>
+   </properties>
+  </tile>
+  <tile id="2">
+   <properties>
+    <property name="spec" value="101"/>
+   </properties>
+  </tile>
+  <tile id="3">
+   <properties>
+    <property name="spec" value="102"/>
+   </properties>
+  </tile>
+  <tile id="4">
+   <properties>
+    <property name="spec" value="12"/>
+   </properties>
+  </tile>
+  <tile id="5">
+   <properties>
+    <property name="disp" value="0"/>
+    <property name="spec" value="30"/>
+    <property name="vx" value="0.7"/>
+    <property name="vy" value="0.7"/>
+   </properties>
+  </tile>
+  <tile id="6">
+   <properties>
+    <property name="disp" value="0"/>
+    <property name="spec" value="30"/>
+    <property name="vx" value="-0.7"/>
+    <property name="vy" value="0.7"/>
+   </properties>
+  </tile>
+  <tile id="7">
+   <properties>
+    <property name="disp" value="0"/>
+    <property name="spec" value="30"/>
+    <property name="vx" value="0.7"/>
+    <property name="vy" value="-0.7"/>
+   </properties>
+  </tile>
+  <tile id="8">
+   <properties>
+    <property name="disp" value="0"/>
+    <property name="spec" value="30"/>
+    <property name="vx" value="-0.7"/>
+    <property name="vy" value="-0.7"/>
+   </properties>
+  </tile>
+  <tile id="9">
+   <properties>
+    <property name="spec" value="8"/>
+    <property name="vx" value="1"/>
+   </properties>
+  </tile>
+  <tile id="13">
+   <properties>
+    <property name="spec" value="11"/>
+    <property name="vx" value="-0.1"/>
+   </properties>
+  </tile>
+  <tile id="14">
+   <properties>
+    <property name="spec" value="11"/>
+    <property name="vx" value="0.1"/>
+   </properties>
+  </tile>
+  <tile id="15">
+   <properties>
+    <property name="disp" value="0"/>
+    <property name="spec" value="30"/>
+    <property name="vx" value="1"/>
+   </properties>
+  </tile>
+  <tile id="16">
+   <properties>
+    <property name="disp" value="0"/>
+    <property name="spec" value="30"/>
+    <property name="vx" value="-1"/>
+   </properties>
+  </tile>
+  <tile id="17">
+   <properties>
+    <property name="disp" value="0"/>
+    <property name="spec" value="30"/>
+    <property name="vy" value="1"/>
+   </properties>
+  </tile>
+  <tile id="18">
+   <properties>
+    <property name="disp" value="0"/>
+    <property name="spec" value="30"/>
+    <property name="vy" value="-1"/>
+   </properties>
+  </tile>
+  <tile id="19">
+   <properties>
+    <property name="spec" value="8"/>
+    <property name="vx" value="-1"/>
+   </properties>
+  </tile>
+  <tile id="176" terrain=",,,0"/>
+  <tile id="177" terrain=",,0,0"/>
+  <tile id="178" terrain=",,0,"/>
+  <tile id="179" terrain=",,,1"/>
+  <tile id="180" terrain=",,1,1"/>
+  <tile id="181" terrain=",,1,"/>
+  <tile id="192" terrain=",0,,0"/>
+  <tile id="193" terrain="0,0,0,0"/>
+  <tile id="194" terrain="0,,0,"/>
+  <tile id="195" terrain=",1,,1"/>
+  <tile id="196" terrain="1,1,1,1"/>
+  <tile id="197" terrain="1,,1,"/>
+  <tile id="208" terrain=",0,,"/>
+  <tile id="209" terrain="0,0,,"/>
+  <tile id="210" terrain="0,,,"/>
+  <tile id="211" terrain=",1,,"/>
+  <tile id="212" terrain="1,1,,"/>
+  <tile id="213" terrain="1,,,"/>
+  <tile id="224" terrain="0,0,0,"/>
+  <tile id="225" terrain="0,0,,0"/>
+  <tile id="226" terrain=",0,0,"/>
+  <tile id="227" terrain="1,1,1,"/>
+  <tile id="228" terrain="1,1,,1"/>
+  <tile id="229" terrain=",1,1,"/>
+  <tile id="240" terrain="0,,0,0"/>
+  <tile id="241" terrain=",0,0,0"/>
+  <tile id="242" terrain="0,,,0"/>
+  <tile id="243" terrain="1,,1,1"/>
+  <tile id="244" terrain=",1,1,1"/>
+  <tile id="245" terrain="1,,,1"/>
+ </tileset>
+ <layer name="back" width="64" height="48">
+  <data encoding="base64" compression="zlib">
+   eJzt1tENgzAMANFInSDdoB2B/YcrAxSpDY6eIf6wTkJ8hDsS6K215z59Ub72eS9M7V9T+9fU/jW1f03tX1P719T+NbV/Te1fU/vX1P41tX9N7V9T+9fU/jW1f03tX1P714z2+RiYO/Ufef7qX/2r/3z2L9dn+9X9t5P9j9Yc+T5k3v9Ha47qn/37P7t/9v+/kfPsn7lq/6ip/tV/1f6ye4b+snv1n9tfd9X9ddfq7/d/hr7y/M/Q92z/u1P7/5Vb8H3V/1r9a/9X/+ofzw/iHxOb
+  </data>
+ </layer>
+ <layer name="mid" width="64" height="48">
+  <data encoding="base64" compression="zlib">
+   eJztmdtuwyAMhlFv0m3awy/ruut2L7pFqjXrr49ADlXzS1aUYiBfwAbSQynl8ORmySuPKtqO5NfCYvW78z8ev1Zn59/5d/5cvzX8L45F28n4bSn/WYw7f7ydjN/O/7j8X3/2weyb2XR/Lj5Di9bmH532vfJWrZ3/e/NnYsHjW2L9n4P/zSj/SdjS/Nn5Ifk/Mn9NOYr40UjEZqmVPxN7Eh8fVyy38qv2PEvxH2+WmRNzjD9q5//XEvEfWVPIPsv9vofvf05CHc8i8U92reA/NvJn1Hv9y7aFz3tkxn0ye4qMtsrPfbgGo04kN2C5xo/rAN17/O9O//gsPeIf+TPzZWvjL/lwWeNf04e3P5Da683f80wh9WEpOv95e1Ler1GWhdfr4YvfBpawM+tb46/Zg9b41pz9B7CMRtbndG0Z/x6xIvF7XAP4Sb74G/e1+K08ltUl4PMN9xJTZpy1d5Llp3fgxQEXvjfkj84zbTyld+L9hm1m+VGZWImOP5mmKGs0J2j8mbEm8feE9SP80zN4/JYyc4X3SddM/su+H49/Wn/obLikSfw1+RvjBss8G0sunnopO/6166MWh7R/Hsv9Wt6ytkdl8Ut9zrE/bOFv3TOebu1MsUf/PRWhP+08G8kDkW8Etfx8z6TlmEg8ezFY860Pn0FS6/wn/umcr/HTty3v+Sz+gflhPS0/tpwnyTi/lr8vzCQhv/RNxOIfwM9SdH68Bq9e7oucmXqMP/drKc/K478G2oj4IL/W51r8Wp6da/y3xq/p2eY/zgPkl85qW+RfI/9F9+CPZD3PTNNe8BfC/6o0
+  </data>
+ </layer>
+ <layer name="act" width="64" height="48">
+  <data encoding="base64" compression="zlib">
+   eJzt18sNgCAQBUB78NeA2n+JFqAxxCi7hJkLRx7LAmEYgNYc0QGS6K0Ova33iVqQwR4dgKrsN/CW+4MS+qQdc3QAqEzP5zBWmGOrMMcdb2Bezv+VmkC5JToAAPwk6u+USQs1aCEjua3RAZKaCkfiuQe/p//J6AQA/ANi
+  </data>
+ </layer>
+</map>
